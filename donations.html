@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="styles.css">
 
     <style>
-
         /* DONATIONS PAGE */
 
         .donations-page {
@@ -80,7 +79,6 @@
         /* SOFTER FLOATING ANIMATION */
 
         @keyframes donationsFloatMilo {
-
             0%, 100% {
                 transform: translateY(0);
             }
@@ -88,7 +86,6 @@
             50% {
                 transform: translateY(-7px);
             }
-
         }
 
         /* SMALL HEADING */
@@ -133,17 +130,56 @@
             font-size: 16px;
             font-weight: 700;
             font-family: inherit;
-            opacity: 0.6;
-            cursor: not-allowed;
+            cursor: pointer;
+            transition: background 0.2s ease;
         }
 
-        /* COMING SOON NOTE */
+        .donate-button:hover {
+            background: #852e34;
+        }
+
+        .donate-button:focus-visible {
+            outline: 3px solid #202020;
+            outline-offset: 4px;
+        }
+
+        /* PAYMENT RECIPIENT NOTE */
 
         .donations-note {
             display: block;
             margin-top: 16px;
             font-size: 13px;
             color: #777;
+        }
+
+        /* ZELLE QR CODE - HIDDEN BY DEFAULT */
+
+        .zelle-qr-container {
+            margin-top: 25px;
+            padding: 22px;
+            background: rgba(255,255,255,0.85);
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .zelle-qr-container[hidden] {
+            display: none;
+        }
+
+        .zelle-qr-image {
+            display: block;
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .donations-card .zelle-qr-instructions {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 15px;
+            margin-bottom: 0;
         }
 
         /* BACK HOME */
@@ -184,7 +220,6 @@
         /* MOBILE RESPONSIVE */
 
         @media (max-width: 600px) {
-
             .donations-page {
                 padding: 85px 15px 40px;
             }
@@ -218,20 +253,24 @@
                 right: 15px;
             }
 
+            .donate-button {
+                max-width: 100%;
+                padding: 17px 22px;
+            }
+
+            .zelle-qr-container {
+                padding: 12px;
+            }
         }
 
         /* ACCESSIBILITY */
 
         @media (prefers-reduced-motion: reduce) {
-
             .donations-milo {
                 animation: none;
             }
-
         }
-
     </style>
-
 </head>
 
 <body>
@@ -383,15 +422,44 @@
                 and make even more MILA events possible.
             </p>
 
-            <!-- DONATION BUTTON - COMING SOON -->
+            <!-- ZELLE DONATION BUTTON -->
 
-            <button class="donate-button" disabled>
-                Support MILA ♡
+            <button
+                class="donate-button"
+                id="revealQrButton"
+                type="button"
+                aria-expanded="false"
+                aria-controls="zelleQrContainer"
+            >
+                Click to Reveal Zelle QR Code
             </button>
 
             <span class="donations-note">
-                Donations will be available soon!
+                Temporary payment recipient: Iker
             </span>
+
+            <!-- ZELLE QR CODE -->
+
+            <div
+                class="zelle-qr-container"
+                id="zelleQrContainer"
+                hidden
+            >
+
+                <img
+                    src="assets/zelle-iker.png"
+                    alt="Zelle QR code for Iker"
+                    class="zelle-qr-image"
+                >
+
+                <p class="zelle-qr-instructions">
+                    Scan this QR code with your banking app
+                    to support MILA through Zelle.
+                    Please verify that the recipient is
+                    <strong>IKER</strong> before sending.
+                </p>
+
+            </div>
 
             <!-- BACK TO HOME -->
 
@@ -465,6 +533,32 @@
                 closeMenu();
                 menuToggle.focus();
             }
+
+        });
+
+
+        /* ZELLE QR REVEAL */
+
+        const revealQrButton =
+            document.getElementById("revealQrButton");
+
+        const zelleQrContainer =
+            document.getElementById("zelleQrContainer");
+
+        revealQrButton.addEventListener("click", function () {
+
+            const isOpening = zelleQrContainer.hidden;
+
+            zelleQrContainer.hidden = !isOpening;
+
+            revealQrButton.setAttribute(
+                "aria-expanded",
+                String(isOpening)
+            );
+
+            revealQrButton.textContent = isOpening
+                ? "Hide Zelle QR Code"
+                : "Click to Reveal Zelle QR Code";
 
         });
 
