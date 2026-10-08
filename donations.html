@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Support MILA | Donations</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+
+        /* DONATIONS PAGE */
+
+        .donations-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 70px 20px 60px;
+        }
+
+        /* MAIN CARD */
+
+        .donations-card {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            padding: 55px 36px 48px;
+            border-radius: 28px;
+            background: rgba(255,255,255,0.75);
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 12px 45px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        /* MILA LOGO - TOP LEFT CORNER */
+
+        .donations-logo {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* FLOATING MILO CONTAINER */
+
+        .donations-milo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 25px auto 25px;
+            min-height: 300px;
+        }
+
+        /* BIGGER MILO */
+
+        .donations-milo {
+            width: 290px;
+            max-width: 90%;
+            height: auto;
+            object-fit: contain;
+
+            filter: drop-shadow(
+                0 14px 18px rgba(8,47,82,0.12)
+            );
+
+            animation:
+                donationsFloatMilo
+                5s
+                ease-in-out
+                infinite;
+        }
+
+        /* SOFTER FLOATING ANIMATION */
+
+        @keyframes donationsFloatMilo {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-7px);
+            }
+
+        }
+
+        /* SMALL HEADING */
+
+        .donations-eyebrow {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #a33a40;
+            margin-bottom: 14px;
+        }
+
+        /* MAIN TITLE */
+
+        .donations-card h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.12;
+            margin-bottom: 22px;
+            color: #202020;
+        }
+
+        /* DESCRIPTION */
+
+        .donations-card p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* DONATION BUTTON */
+
+        .donate-button {
+            display: inline-block;
+            padding: 17px 38px;
+            margin-top: 18px;
+            background: #a33a40;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: inherit;
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* COMING SOON NOTE */
+
+        .donations-note {
+            display: block;
+            margin-top: 16px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        /* BACK HOME */
+
+        .donations-home {
+            display: inline-block;
+            margin-top: 30px;
+            color: #444;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .donations-home:hover {
+            text-decoration: underline;
+        }
+
+        /* NAVIGATION MENU - TOP RIGHT */
+
+        .donations-navigation {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 1000;
+        }
+
+        .donations-navigation .menu-toggle {
+            position: relative;
+            top: auto;
+            right: auto;
+        }
+
+        .donations-navigation .floating-menu {
+            position: absolute;
+            top: 65px;
+            right: 0;
+        }
+
+        /* MOBILE RESPONSIVE */
+
+        @media (max-width: 600px) {
+
+            .donations-page {
+                padding: 85px 15px 40px;
+            }
+
+            .donations-card {
+                padding: 65px 22px 36px;
+            }
+
+            .donations-logo {
+                top: 18px;
+                left: 18px;
+                width: 48px;
+                height: 48px;
+            }
+
+            .donations-milo-container {
+                min-height: 240px;
+                margin: 10px auto 20px;
+            }
+
+            .donations-milo {
+                width: 240px;
+            }
+
+            .donations-card p {
+                font-size: 15px;
+            }
+
+            .donations-navigation {
+                top: 15px;
+                right: 15px;
+            }
+
+        }
+
+        /* ACCESSIBILITY */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .donations-milo {
+                animation: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ===================================
+         NAVIGATION MENU - TOP RIGHT
+    ==================================== -->
+
+    <div class="donations-navigation">
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="floatingMenu"
+            type="button"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="floating-menu" id="floatingMenu">
+
+            <div class="menu-header">
+                <strong>MILA</strong>
+                <span>FIU 🇲🇽</span>
+            </div>
+
+            <!-- HOME -->
+
+            <a href="index.html">
+                <div>
+                    <small>01</small>
+                    <strong>Home</strong>
+                </div>
+                <span>→</span>
+            </a>
+
+            <!-- FUTURE EVENTS -->
+
+            <a href="events.html">
+                <div>
+                    <small>02</small>
+                    <strong>Future Events</strong>
+                </div>
+                <span>→</span>
+            </a>
+
+            <!-- BECOME A MEMBER -->
+
+            <a
+                href="https://fiu.campuslabs.com/engage/organization/mila26"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <div>
+                    <small>03</small>
+                    <strong>Become a Member</strong>
+                </div>
+                <span>↗</span>
+            </a>
+
+            <!-- DONATIONS -->
+
+            <a href="donations.html" aria-current="page">
+                <div>
+                    <small>04</small>
+                    <strong>Donations ♡</strong>
+                </div>
+                <span>→</span>
+            </a>
+
+            <!-- CONTACT US -->
+
+            <a href="mailto:milafiu2026@outlook.com">
+                <div>
+                    <small>05</small>
+                    <strong>Contact Us</strong>
+                </div>
+                <span>→</span>
+            </a>
+
+            <div class="menu-footer">
+                Mexican Innovation &amp; Leadership Association
+            </div>
+
+        </nav>
+
+    </div>
+
+
+    <!-- ===================================
+         DONATIONS CONTENT
+    ==================================== -->
+
+    <main class="donations-page">
+
+        <section class="donations-card">
+
+            <!-- MILA LOGO - TOP LEFT -->
+
+            <img
+                src="assets/mila-logo.jpeg"
+                alt="MILA FIU Logo"
+                class="donations-logo"
+            >
+
+            <!-- BIG FLOATING MILO -->
+
+            <div class="donations-milo-container">
+
+                <img
+                    src="assets/milo-poncho.png"
+                    alt="Milo wearing a Mexican poncho"
+                    class="donations-milo"
+                >
+
+            </div>
+
+            <!-- SUPPORT HEADING -->
+
+            <div class="donations-eyebrow">
+                Support Our Mission
+            </div>
+
+            <!-- MAIN TITLE -->
+
+            <h1>
+                Help MILA Keep Growing!
+            </h1>
+
+            <!-- DESCRIPTION -->
+
+            <p>
+                Every great event starts with a community that
+                believes in making things happen.
+            </p>
+
+            <p>
+                Your support helps us continue creating meaningful
+                experiences, bringing inspiring speakers to FIU,
+                and opening doors to new opportunities for students.
+            </p>
+
+            <p>
+                Together, we can keep building a stronger community
+                and make even more MILA events possible.
+            </p>
+
+            <!-- DONATION BUTTON - COMING SOON -->
+
+            <button class="donate-button" disabled>
+                Support MILA ♡
+            </button>
+
+            <span class="donations-note">
+                Donations will be available soon!
+            </span>
+
+            <!-- BACK TO HOME -->
+
+            <div>
+
+                <a
+                    href="index.html"
+                    class="donations-home"
+                >
+                    ← Back to Home
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ===================================
+         NAVIGATION JAVASCRIPT
+    ==================================== -->
+
+    <script>
+
+        const menuToggle =
+            document.getElementById("menuToggle");
+
+        const floatingMenu =
+            document.getElementById("floatingMenu");
+
+        function closeMenu() {
+            floatingMenu.classList.remove("open");
+            menuToggle.classList.remove("open");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+        }
+
+        menuToggle.addEventListener("click", function () {
+
+            menuToggle.classList.toggle("open");
+            floatingMenu.classList.toggle("open");
+
+            const isOpen =
+                floatingMenu.classList.contains("open");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+        });
+
+        document.addEventListener("click", function (event) {
+
+            if (
+                !floatingMenu.contains(event.target) &&
+                !menuToggle.contains(event.target)
+            ) {
+                closeMenu();
+            }
+
+        });
+
+        document.addEventListener("keydown", function (event) {
+
+            if (event.key === "Escape") {
+                closeMenu();
+                menuToggle.focus();
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

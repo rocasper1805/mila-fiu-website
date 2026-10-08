@@ -1,8 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -17,20 +17,220 @@
         content="Upcoming events from the Mexican Innovation & Leadership Association at FIU."
     >
 
-    <link
-        rel="stylesheet"
-        href="styles.css"
-    >
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+
+        /* =====================================
+           TODAY STAMP
+        ===================================== */
+
+        .event-card {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .today-stamp {
+            position: absolute;
+
+            /* HIGHER POSITION */
+            top: -90px;
+            right: 45px;
+
+            width: 185px;
+            height: 185px;
+
+            z-index: 10;
+            pointer-events: none;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            transform: rotate(-17deg);
+            transform-origin: center;
+        }
+
+        .today-stamp.is-today {
+            display: flex;
+        }
+
+        /* INK STAMP DESIGN */
+
+        .today-stamp-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+
+            border: 9px double #c91d2e;
+            border-radius: 50%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            color: #c91d2e;
+            background: rgba(255,255,255,0.90);
+
+            box-shadow:
+                inset 0 0 0 5px rgba(201,29,46,0.15),
+                0 8px 25px rgba(201,29,46,0.12);
+
+            font-family: Arial, sans-serif;
+            text-align: center;
+
+            -webkit-mask-image:
+                repeating-linear-gradient(
+                    75deg,
+                    black 0px,
+                    black 8px,
+                    rgba(0,0,0,0.86) 9px,
+                    black 11px
+                );
+
+            mask-image:
+                repeating-linear-gradient(
+                    75deg,
+                    black 0px,
+                    black 8px,
+                    rgba(0,0,0,0.86) 9px,
+                    black 11px
+                );
+        }
+
+        .today-stamp-top,
+        .today-stamp-bottom {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .today-stamp-top {
+            margin-bottom: 11px;
+        }
+
+        .today-stamp-bottom {
+            margin-top: 11px;
+        }
+
+        .today-stamp-main {
+            width: 110%;
+            padding: 7px 0;
+
+            border-top: 5px solid #c91d2e;
+            border-bottom: 5px solid #c91d2e;
+
+            font-size: 37px;
+            font-weight: 1000;
+            line-height: 1;
+            letter-spacing: 1px;
+
+            background: rgba(255,255,255,0.94);
+        }
+
+        /* STAMP ANIMATION */
+
+        .today-stamp.is-today {
+            animation: stampImpact 0.75s
+                cubic-bezier(0.2, 0.9, 0.25, 1)
+                both;
+        }
+
+        @keyframes stampImpact {
+
+            0% {
+                opacity: 0;
+                transform:
+                    translateY(-180px)
+                    scale(2.6)
+                    rotate(-28deg);
+                filter: blur(5px);
+            }
+
+            55% {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(0.88)
+                    rotate(-17deg);
+                filter: blur(0);
+            }
+
+            72% {
+                transform:
+                    translateY(-7px)
+                    scale(1.07)
+                    rotate(-17deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(1)
+                    rotate(-17deg);
+            }
+
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 768px) {
+
+            .today-stamp {
+                width: 120px;
+                height: 120px;
+
+                top: -65px;
+                right: 20px;
+            }
+
+            .today-stamp-inner {
+                border-width: 6px;
+            }
+
+            .today-stamp-top,
+            .today-stamp-bottom {
+                font-size: 7px;
+                letter-spacing: 1.5px;
+            }
+
+            .today-stamp-top {
+                margin-bottom: 6px;
+            }
+
+            .today-stamp-bottom {
+                margin-top: 6px;
+            }
+
+            .today-stamp-main {
+                font-size: 24px;
+                border-top-width: 3px;
+                border-bottom-width: 3px;
+                padding: 5px 0;
+            }
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .today-stamp.is-today {
+                animation: none;
+            }
+
+        }
+
+    </style>
 
 </head>
 
 
 <body>
 
-
-    <!-- ========================================
+    <!-- =====================================
          FLOATING MENU
-    ========================================= -->
+    ===================================== -->
 
     <div class="menu-wrapper">
 
@@ -39,82 +239,42 @@
             id="menuToggle"
             aria-label="Open menu"
             aria-expanded="false"
+            type="button"
         >
-
             <span></span>
             <span></span>
             <span></span>
-
         </button>
-
 
         <nav
             class="floating-menu"
             id="floatingMenu"
         >
 
-
             <div class="menu-header">
-
-                <strong>
-                    MILA
-                </strong>
-
-                <span>
-                    FIU 🇲🇽
-                </span>
-
+                <strong>MILA</strong>
+                <span>FIU 🇲🇽</span>
             </div>
-
-
 
             <!-- HOME -->
 
             <a href="index.html">
-
                 <div>
-
-                    <small>
-                        01
-                    </small>
-
-                    <strong>
-                        Home
-                    </strong>
-
+                    <small>01</small>
+                    <strong>Home</strong>
                 </div>
-
-                <span>
-                    →
-                </span>
-
+                <span>→</span>
             </a>
-
-
 
             <!-- FUTURE EVENTS -->
 
-            <a href="events.html">
-
+            <a href="events.html" aria-current="page">
                 <div>
-
-                    <small>
-                        02
-                    </small>
-
-                    <strong>
-                        Future Events
-                    </strong>
-
+                    <small>02</small>
+                    <strong>Future Events</strong>
                 </div>
-
-                <span>
-                    →
-                </span>
-
+                <span>→</span>
             </a>
-
-
 
             <!-- MEMBER -->
 
@@ -123,70 +283,47 @@
                 target="_blank"
                 rel="noopener noreferrer"
             >
-
                 <div>
-
-                    <small>
-                        03
-                    </small>
-
-                    <strong>
-                        Become a Member
-                    </strong>
-
+                    <small>03</small>
+                    <strong>Become a Member</strong>
                 </div>
-
-                <span>
-                    ↗
-                </span>
-
+                <span>↗</span>
             </a>
 
+            <!-- DONATIONS -->
 
+            <a href="donations.html">
+                <div>
+                    <small>04</small>
+                    <strong>Donations ♡</strong>
+                </div>
+                <span>→</span>
+            </a>
 
             <!-- CONTACT -->
 
             <a href="mailto:milafiu2026@outlook.com">
-
                 <div>
-
-                    <small>
-                        04
-                    </small>
-
-                    <strong>
-                        Contact Us
-                    </strong>
-
+                    <small>05</small>
+                    <strong>Contact Us</strong>
                 </div>
-
-                <span>
-                    →
-                </span>
-
+                <span>→</span>
             </a>
 
-
-
             <div class="menu-footer">
-
-                Mexican Innovation & Leadership Association
-
+                Mexican Innovation &amp; Leadership Association
             </div>
-
 
         </nav>
 
     </div>
 
 
-
-    <!-- ========================================
+    <!-- =====================================
          EVENTS PAGE
-    ========================================= -->
+    ===================================== -->
 
     <main class="events-page">
-
 
         <!-- MILO -->
 
@@ -196,41 +333,52 @@
             alt="Milo, MILA mascot"
         >
 
-
-
         <!-- HEADER -->
 
         <header class="events-header">
 
-            <p>
+            <p>MILA EXPERIENCES</p>
 
-                MILA EXPERIENCES
-
-            </p>
-
-
-            <h1>
-
-                Future Events
-
-            </h1>
-
+            <h1>Future Events</h1>
 
             <span>
-
                 Meet. Learn. Connect. Lead.
-
             </span>
 
         </header>
 
 
-
-        <!-- ========================================
+        <!-- =====================================
              EVENT CARD
-        ========================================= -->
+        ===================================== -->
 
         <article class="event-card">
+
+            <!-- TODAY STAMP -->
+
+            <div
+                class="today-stamp"
+                id="todayStamp"
+                aria-label="This event is today"
+            >
+
+                <div class="today-stamp-inner">
+
+                    <span class="today-stamp-top">
+                        MILA EVENT
+                    </span>
+
+                    <span class="today-stamp-main">
+                        TODAY
+                    </span>
+
+                    <span class="today-stamp-bottom">
+                        OCT 08
+                    </span>
+
+                </div>
+
+            </div>
 
 
             <!-- EVENT BANNER -->
@@ -245,28 +393,18 @@
             </div>
 
 
-
             <!-- EVENT CONTENT -->
 
             <div class="event-content">
 
-
                 <span class="event-date">
-
                     OCTOBER 8 · 4:00 PM
-
                 </span>
 
-
-
                 <h2>
-
                     Beyond the<br>
                     Adversities
-
                 </h2>
-
-
 
                 <p class="event-description">
 
@@ -278,129 +416,59 @@
                 </p>
 
 
-
                 <!-- SPEAKERS -->
 
                 <div class="speakers">
 
-                    <p>
+                    <p>FEATURING</p>
 
-                        FEATURING
-
-                    </p>
-
-
-                    <strong>
-
-                        Ricardo Paván
-
-                    </strong>
-
-
-                    <strong>
-
-                        Jorge Font
-
-                    </strong>
-
-
-                    <strong>
-
-                        Martha Soto
-
-                    </strong>
+                    <strong>Ricardo Paván</strong>
+                    <strong>Jorge Font</strong>
+                    <strong>Martha Soto</strong>
 
                 </div>
-
 
 
                 <!-- DETAILS -->
 
                 <div class="event-details">
 
-
                     <div>
 
-                        <span>
-                            📍
-                        </span>
-
+                        <span>📍</span>
 
                         <div>
-
-                            <small>
-
-                                LOCATION
-
-                            </small>
-
-                            <strong>
-
-                                Tamiami Hall 121
-
-                            </strong>
-
+                            <small>LOCATION</small>
+                            <strong>Tamiami Hall 121</strong>
                         </div>
 
                     </div>
 
 
-
                     <div>
 
-                        <span>
-                            🎟️
-                        </span>
-
+                        <span>🎟️</span>
 
                         <div>
-
-                            <small>
-
-                                ADMISSION
-
-                            </small>
-
-                            <strong>
-
-                                Free · RSVP Required
-
-                            </strong>
-
+                            <small>ADMISSION</small>
+                            <strong>Free · RSVP Required</strong>
                         </div>
 
                     </div>
 
 
-
                     <div>
 
-                        <span>
-                            🐾
-                        </span>
-
+                        <span>🐾</span>
 
                         <div>
-
-                            <small>
-
-                                WHO CAN ATTEND
-
-                            </small>
-
-                            <strong>
-
-                                Open to FIU Students
-
-                            </strong>
-
+                            <small>WHO CAN ATTEND</small>
+                            <strong>Open to FIU Students</strong>
                         </div>
 
                     </div>
-
 
                 </div>
-
 
 
                 <!-- RSVP -->
@@ -414,20 +482,13 @@
 
                     RSVP NOW
 
-                    <span>
-
-                        ↗
-
-                    </span>
+                    <span>↗</span>
 
                 </a>
 
-
             </div>
 
-
         </article>
-
 
 
         <!-- BACK HOME -->
@@ -436,21 +497,19 @@
             href="index.html"
             class="back-home"
         >
-
             ← Back to MILA Home
-
         </a>
-
 
     </main>
 
 
-
-    <!-- ========================================
+    <!-- =====================================
          JAVASCRIPT
-    ========================================= -->
+    ===================================== -->
 
     <script>
+
+        /* NAVIGATION MENU */
 
         const menuToggle =
             document.getElementById("menuToggle");
@@ -458,77 +517,81 @@
         const floatingMenu =
             document.getElementById("floatingMenu");
 
+        function closeMenu() {
 
-        menuToggle.addEventListener(
-            "click",
-            function () {
+            floatingMenu.classList.remove("open");
+            menuToggle.classList.remove("open");
 
-                menuToggle.classList.toggle("open");
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
 
-                floatingMenu.classList.toggle("open");
+        }
 
+        menuToggle.addEventListener("click", function () {
 
-                const isOpen =
-                    floatingMenu.classList.contains("open");
+            menuToggle.classList.toggle("open");
+            floatingMenu.classList.toggle("open");
 
+            const isOpen =
+                floatingMenu.classList.contains("open");
 
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    isOpen
-                );
+            menuToggle.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
 
+        });
+
+        document.addEventListener("click", function (event) {
+
+            if (
+                !floatingMenu.contains(event.target) &&
+                !menuToggle.contains(event.target)
+            ) {
+                closeMenu();
             }
-        );
 
+        });
 
+        document.addEventListener("keydown", function (event) {
 
-        document.addEventListener(
-            "click",
-            function (event) {
-
-                if (
-                    !floatingMenu.contains(event.target) &&
-                    !menuToggle.contains(event.target)
-                ) {
-
-                    floatingMenu.classList.remove("open");
-
-                    menuToggle.classList.remove("open");
-
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                }
-
+            if (event.key === "Escape") {
+                closeMenu();
             }
-        );
+
+        });
 
 
+        /* =====================================
+           TODAY STAMP LOGIC
+           Event: October 8, 2026
+           Time zone: Miami
+        ===================================== */
 
-        document.addEventListener(
-            "keydown",
-            function (event) {
+        const todayStamp =
+            document.getElementById("todayStamp");
 
-                if (event.key === "Escape") {
-
-                    floatingMenu.classList.remove("open");
-
-                    menuToggle.classList.remove("open");
-
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                }
-
+        const miamiDate = new Intl.DateTimeFormat(
+            "en-CA",
+            {
+                timeZone: "America/New_York",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit"
             }
-        );
+        ).format(new Date());
+
+        const eventDate = "2026-10-08";
+
+        if (miamiDate === eventDate) {
+
+            todayStamp.classList.add("is-today");
+
+        }
 
     </script>
-
 
 </body>
 
