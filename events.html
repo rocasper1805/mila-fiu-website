@@ -20,217 +20,20 @@
     <link rel="stylesheet" href="styles.css">
 
     <style>
-
-        /* =====================================
-           TODAY STAMP
-        ===================================== */
-
-        .event-card {
-            position: relative;
-            isolation: isolate;
-        }
-
-        .today-stamp {
-            position: absolute;
-
-            /* HIGHER POSITION */
-            top: -90px;
-            right: 45px;
-
-            width: 185px;
-            height: 185px;
-
-            z-index: 10;
-            pointer-events: none;
-
-            display: none;
-            align-items: center;
-            justify-content: center;
-
-            transform: rotate(-17deg);
-            transform-origin: center;
-        }
-
-        .today-stamp.is-today {
-            display: flex;
-        }
-
-        /* INK STAMP DESIGN */
-
-        .today-stamp-inner {
-            position: relative;
+        /* Keep the entire event flyer visible */
+        .event-image img {
             width: 100%;
-            height: 100%;
-
-            border: 9px double #c91d2e;
-            border-radius: 50%;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            color: #c91d2e;
-            background: rgba(255,255,255,0.90);
-
-            box-shadow:
-                inset 0 0 0 5px rgba(201,29,46,0.15),
-                0 8px 25px rgba(201,29,46,0.12);
-
-            font-family: Arial, sans-serif;
-            text-align: center;
-
-            -webkit-mask-image:
-                repeating-linear-gradient(
-                    75deg,
-                    black 0px,
-                    black 8px,
-                    rgba(0,0,0,0.86) 9px,
-                    black 11px
-                );
-
-            mask-image:
-                repeating-linear-gradient(
-                    75deg,
-                    black 0px,
-                    black 8px,
-                    rgba(0,0,0,0.86) 9px,
-                    black 11px
-                );
+            height: auto;
+            object-fit: contain;
+            display: block;
         }
-
-        .today-stamp-top,
-        .today-stamp-bottom {
-            font-size: 11px;
-            font-weight: 900;
-            letter-spacing: 3px;
-        }
-
-        .today-stamp-top {
-            margin-bottom: 11px;
-        }
-
-        .today-stamp-bottom {
-            margin-top: 11px;
-        }
-
-        .today-stamp-main {
-            width: 110%;
-            padding: 7px 0;
-
-            border-top: 5px solid #c91d2e;
-            border-bottom: 5px solid #c91d2e;
-
-            font-size: 37px;
-            font-weight: 1000;
-            line-height: 1;
-            letter-spacing: 1px;
-
-            background: rgba(255,255,255,0.94);
-        }
-
-        /* STAMP ANIMATION */
-
-        .today-stamp.is-today {
-            animation: stampImpact 0.75s
-                cubic-bezier(0.2, 0.9, 0.25, 1)
-                both;
-        }
-
-        @keyframes stampImpact {
-
-            0% {
-                opacity: 0;
-                transform:
-                    translateY(-180px)
-                    scale(2.6)
-                    rotate(-28deg);
-                filter: blur(5px);
-            }
-
-            55% {
-                opacity: 1;
-                transform:
-                    translateY(0)
-                    scale(0.88)
-                    rotate(-17deg);
-                filter: blur(0);
-            }
-
-            72% {
-                transform:
-                    translateY(-7px)
-                    scale(1.07)
-                    rotate(-17deg);
-            }
-
-            100% {
-                opacity: 1;
-                transform:
-                    translateY(0)
-                    scale(1)
-                    rotate(-17deg);
-            }
-
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 768px) {
-
-            .today-stamp {
-                width: 120px;
-                height: 120px;
-
-                top: -65px;
-                right: 20px;
-            }
-
-            .today-stamp-inner {
-                border-width: 6px;
-            }
-
-            .today-stamp-top,
-            .today-stamp-bottom {
-                font-size: 7px;
-                letter-spacing: 1.5px;
-            }
-
-            .today-stamp-top {
-                margin-bottom: 6px;
-            }
-
-            .today-stamp-bottom {
-                margin-top: 6px;
-            }
-
-            .today-stamp-main {
-                font-size: 24px;
-                border-top-width: 3px;
-                border-bottom-width: 3px;
-                padding: 5px 0;
-            }
-
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            .today-stamp.is-today {
-                animation: none;
-            }
-
-        }
-
     </style>
 
 </head>
 
-
 <body>
 
-    <!-- =====================================
-         FLOATING MENU
-    ===================================== -->
+    <!-- FLOATING MENU -->
 
     <div class="menu-wrapper">
 
@@ -239,6 +42,7 @@
             id="menuToggle"
             aria-label="Open menu"
             aria-expanded="false"
+            aria-controls="floatingMenu"
             type="button"
         >
             <span></span>
@@ -276,7 +80,7 @@
                 <span>→</span>
             </a>
 
-            <!-- MEMBER -->
+            <!-- BECOME A MEMBER -->
 
             <a
                 href="https://fiu.campuslabs.com/engage/organization/mila26"
@@ -300,7 +104,7 @@
                 <span>→</span>
             </a>
 
-            <!-- CONTACT -->
+            <!-- CONTACT US -->
 
             <a href="mailto:milafiu2026@outlook.com">
                 <div>
@@ -319,9 +123,7 @@
     </div>
 
 
-    <!-- =====================================
-         EVENTS PAGE
-    ===================================== -->
+    <!-- EVENTS PAGE -->
 
     <main class="events-page">
 
@@ -337,9 +139,13 @@
 
         <header class="events-header">
 
-            <p>MILA EXPERIENCES</p>
+            <p>
+                MILA EXPERIENCES
+            </p>
 
-            <h1>Future Events</h1>
+            <h1>
+                Future Events
+            </h1>
 
             <span>
                 Meet. Learn. Connect. Lead.
@@ -348,46 +154,17 @@
         </header>
 
 
-        <!-- =====================================
-             EVENT CARD
-        ===================================== -->
+        <!-- EVENT CARD -->
 
         <article class="event-card">
 
-            <!-- TODAY STAMP -->
-
-            <div
-                class="today-stamp"
-                id="todayStamp"
-                aria-label="This event is today"
-            >
-
-                <div class="today-stamp-inner">
-
-                    <span class="today-stamp-top">
-                        MILA EVENT
-                    </span>
-
-                    <span class="today-stamp-main">
-                        TODAY
-                    </span>
-
-                    <span class="today-stamp-bottom">
-                        OCT 08
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <!-- EVENT BANNER -->
+            <!-- EVENT FLYER -->
 
             <div class="event-image">
 
                 <img
-                    src="assets/beyond-adversities.jpeg"
-                    alt="Beyond the Adversities MILA event"
+                    src="assets/M&amp;M mila.jpeg"
+                    alt="Mentors and Mentees Night event flyer"
                 >
 
             </div>
@@ -398,38 +175,25 @@
             <div class="event-content">
 
                 <span class="event-date">
-                    OCTOBER 8 · 4:00 PM
+                    NOVEMBER 10 · 6:00 PM
                 </span>
 
                 <h2>
-                    Beyond the<br>
-                    Adversities
+                    Mentors &amp;<br>
+                    Mentees Night
                 </h2>
 
                 <p class="event-description">
-
-                    A conversation on sports, inclusion and impact
-                    bringing the FIU community together to hear
-                    powerful stories about resilience, leadership
-                    and purpose.
-
+                    Connect. Learn. Grow.
+                    Join us for an interactive evening of
+                    roundtable discussions with professionals,
+                    where students can gain valuable insights,
+                    develop essential skills, and build
+                    meaningful connections.
                 </p>
 
 
-                <!-- SPEAKERS -->
-
-                <div class="speakers">
-
-                    <p>FEATURING</p>
-
-                    <strong>Ricardo Paván</strong>
-                    <strong>Jorge Font</strong>
-                    <strong>Martha Soto</strong>
-
-                </div>
-
-
-                <!-- DETAILS -->
+                <!-- EVENT DETAILS -->
 
                 <div class="event-details">
 
@@ -444,18 +208,18 @@
 
                     </div>
 
-
                     <div>
 
-                        <span>🎟️</span>
+                        <span>🕕</span>
 
                         <div>
-                            <small>ADMISSION</small>
-                            <strong>Free · RSVP Required</strong>
+                            <small>DATE &amp; TIME</small>
+                            <strong>
+                                Tuesday, November 10 · 6:00 PM
+                            </strong>
                         </div>
 
                     </div>
-
 
                     <div>
 
@@ -463,7 +227,20 @@
 
                         <div>
                             <small>WHO CAN ATTEND</small>
-                            <strong>Open to FIU Students</strong>
+                            <strong>Open to All Students</strong>
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <span>🤝</span>
+
+                        <div>
+                            <small>EVENT FORMAT</small>
+                            <strong>
+                                Interactive Roundtable Discussions
+                            </strong>
                         </div>
 
                     </div>
@@ -471,19 +248,17 @@
                 </div>
 
 
-                <!-- RSVP -->
+                <!-- EVENT REGISTRATION -->
 
                 <a
-                    href="https://fiu.campuslabs.com/engage/event/12801678"
+                    href="https://fiu.campuslabs.com/engage/actioncenter/organization/mila26/events/calendar/details/12929241"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="rsvp"
                 >
-
-                    RSVP NOW
+                    EVENT DETAILS / RSVP
 
                     <span>↗</span>
-
                 </a>
 
             </div>
@@ -503,13 +278,9 @@
     </main>
 
 
-    <!-- =====================================
-         JAVASCRIPT
-    ===================================== -->
+    <!-- NAVIGATION JAVASCRIPT -->
 
     <script>
-
-        /* NAVIGATION MENU */
 
         const menuToggle =
             document.getElementById("menuToggle");
@@ -518,81 +289,58 @@
             document.getElementById("floatingMenu");
 
         function closeMenu() {
-
             floatingMenu.classList.remove("open");
             menuToggle.classList.remove("open");
-
             menuToggle.setAttribute(
                 "aria-expanded",
                 "false"
             );
-
         }
 
-        menuToggle.addEventListener("click", function () {
+        menuToggle.addEventListener(
+            "click",
+            function () {
 
-            menuToggle.classList.toggle("open");
-            floatingMenu.classList.toggle("open");
+                menuToggle.classList.toggle("open");
+                floatingMenu.classList.toggle("open");
 
-            const isOpen =
-                floatingMenu.classList.contains("open");
+                const isOpen =
+                    floatingMenu.classList.contains("open");
 
-            menuToggle.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-            );
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
+                );
 
-        });
-
-        document.addEventListener("click", function (event) {
-
-            if (
-                !floatingMenu.contains(event.target) &&
-                !menuToggle.contains(event.target)
-            ) {
-                closeMenu();
             }
+        );
 
-        });
+        document.addEventListener(
+            "click",
+            function (event) {
 
-        document.addEventListener("keydown", function (event) {
+                if (
+                    !floatingMenu.contains(event.target) &&
+                    !menuToggle.contains(event.target)
+                ) {
+                    closeMenu();
+                }
 
-            if (event.key === "Escape") {
-                closeMenu();
             }
+        );
 
-        });
+        document.addEventListener(
+            "keydown",
+            function (event) {
 
+                if (event.key === "Escape") {
+                    closeMenu();
+                }
 
-        /* =====================================
-           TODAY STAMP LOGIC
-           Event: October 8, 2026
-           Time zone: Miami
-        ===================================== */
-
-        const todayStamp =
-            document.getElementById("todayStamp");
-
-        const miamiDate = new Intl.DateTimeFormat(
-            "en-CA",
-            {
-                timeZone: "America/New_York",
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit"
             }
-        ).format(new Date());
-
-        const eventDate = "2026-10-08";
-
-        if (miamiDate === eventDate) {
-
-            todayStamp.classList.add("is-today");
-
-        }
+        );
 
     </script>
 
 </body>
-
 </html>
