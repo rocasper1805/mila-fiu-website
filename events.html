@@ -33,7 +33,9 @@
 
 <body>
 
-    <!-- FLOATING MENU -->
+    <!-- ========================================
+         FLOATING MENU
+    ========================================= -->
 
     <div class="menu-wrapper">
 
@@ -83,7 +85,7 @@
             <!-- BECOME A MEMBER -->
 
             <a
-                href="https://fiu.campuslabs.com/engage/event/12929241"
+                href="https://fiu.campuslabs.com/engage/organization/mila26"
                 target="_blank"
                 rel="noopener noreferrer"
             >
@@ -123,7 +125,9 @@
     </div>
 
 
-    <!-- EVENTS PAGE -->
+    <!-- ========================================
+         EVENTS PAGE
+    ========================================= -->
 
     <main class="events-page">
 
@@ -154,7 +158,9 @@
         </header>
 
 
-        <!-- EVENT CARD -->
+        <!-- ========================================
+             EVENT CARD
+        ========================================= -->
 
         <article class="event-card">
 
@@ -174,14 +180,20 @@
 
             <div class="event-content">
 
+                <!-- DATE -->
+
                 <span class="event-date">
                     NOVEMBER 10 · 6:00 PM
                 </span>
+
+                <!-- TITLE -->
 
                 <h2>
                     Mentors &amp;<br>
                     Mentees Night
                 </h2>
+
+                <!-- DESCRIPTION -->
 
                 <p class="event-description">
                     Connect. Learn. Grow.
@@ -193,9 +205,13 @@
                 </p>
 
 
-                <!-- EVENT DETAILS -->
+                <!-- ========================================
+                     EVENT DETAILS
+                ========================================= -->
 
                 <div class="event-details">
+
+                    <!-- LOCATION -->
 
                     <div>
 
@@ -207,6 +223,8 @@
                         </div>
 
                     </div>
+
+                    <!-- DATE AND TIME -->
 
                     <div>
 
@@ -221,6 +239,8 @@
 
                     </div>
 
+                    <!-- ATTENDEES -->
+
                     <div>
 
                         <span>🐾</span>
@@ -231,6 +251,8 @@
                         </div>
 
                     </div>
+
+                    <!-- FORMAT -->
 
                     <div>
 
@@ -248,17 +270,21 @@
                 </div>
 
 
-                <!-- EVENT REGISTRATION -->
+                <!-- ========================================
+                     RSVP - CORRECT LINK
+                ========================================= -->
 
                 <a
-                    href="https://fiu.campuslabs.com/engage/actioncenter/organization/mila26/events/calendar/details/12929241"
+                    href="https://fiu.campuslabs.com/engage/event/12929241"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="rsvp"
                 >
+
                     EVENT DETAILS / RSVP
 
                     <span>↗</span>
+
                 </a>
 
             </div>
@@ -278,7 +304,9 @@
     </main>
 
 
-    <!-- NAVIGATION JAVASCRIPT -->
+    <!-- ========================================
+         NAVIGATION JAVASCRIPT
+    ========================================= -->
 
     <script>
 
@@ -289,12 +317,15 @@
             document.getElementById("floatingMenu");
 
         function closeMenu() {
+
             floatingMenu.classList.remove("open");
             menuToggle.classList.remove("open");
+
             menuToggle.setAttribute(
                 "aria-expanded",
                 "false"
             );
+
         }
 
         menuToggle.addEventListener(
@@ -335,6 +366,8 @@
 
                 if (event.key === "Escape") {
                     closeMenu();
+                    menuToggle.classList.remove("open");
+                    menuToggle.focus();
                 }
 
             }
